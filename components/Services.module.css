@@ -1,0 +1,124 @@
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 54px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  border: 1px solid var(--wire);
+  border-radius: var(--r);
+  background: rgba(241, 243, 241, 0.72);
+  padding: clamp(26px, 2.8vw, 36px);
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--ink);
+  background: var(--sheet-2);
+  transform: translateY(-2px);
+}
+
+/* drafting tick in the top-right corner of each panel */
+.card::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.role {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: clamp(23px, 2.4vw, 29px);
+  letter-spacing: -0.03em;
+}
+
+.body {
+  margin-top: 14px;
+  color: var(--ink-2);
+  font-size: 16.5px;
+}
+
+.list {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.chip {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border: 1px solid var(--wire);
+  border-radius: 100px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.output {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.outputInner {
+  border-top: 1px dashed var(--wire);
+  padding-top: 14px;
+  display: flex;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.outputKey {
+  color: var(--ochre);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .head {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 20px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

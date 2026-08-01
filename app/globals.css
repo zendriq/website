@@ -1,0 +1,190 @@
+/* ---------------------------------------------------------------
+   Zendriq — drafting sheet
+   Cool paper substrate, graphite linework, ultramarine as the
+   structural accent, ochre reserved for anything that is "live".
+   --------------------------------------------------------------- */
+
+:root {
+  --sheet: #e7eae8;
+  --sheet-2: #f1f3f1;
+  --sheet-3: #dce0dd;
+  --grid: #d3d9d5;
+  --wire: #b6bfba;
+  --ink: #121715;
+  --ink-2: #4e5a55;
+  --ink-3: #78837d;
+  --blue: #2a34c8;
+  --blue-2: #4c55e0;
+  --blue-tint: #e0e2f9;
+  --ochre: #b8660f;
+  --dark: #10161a;
+  --dark-2: #1a2328;
+  --dark-wire: #2c383e;
+  --dark-ink: #e8ecea;
+  --dark-ink-2: #9aa8a4;
+
+  --shell: 1300px;
+  --gut: 28px;
+
+  --r: 3px;
+
+  --step: clamp(66px, 8vw, 112px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--sheet);
+  /* Graph-paper substrate: 24px minor rule, 120px major. */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(rgba(120, 131, 125, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 131, 125, 0.16) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+  background-position: -1px -1px;
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.03;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--blue);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* --- shared layout ------------------------------------------------ */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+.band {
+  padding-block: var(--step);
+  border-top: 1px solid var(--wire);
+}
+
+section[id] {
+  scroll-margin-top: 82px;
+}
+
+/* --- shared type -------------------------------------------------- */
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--blue);
+  flex: none;
+}
+
+.sectionTitle {
+  font-size: clamp(30px, 4.2vw, 50px);
+  max-width: 19ch;
+}
+
+.lede {
+  color: var(--ink-2);
+  font-size: clamp(17px, 1.6vw, 19px);
+  max-width: 60ch;
+  margin-top: 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

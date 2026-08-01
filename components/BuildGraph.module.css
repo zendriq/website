@@ -1,0 +1,195 @@
+.frame {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--wire);
+  background: rgba(241, 243, 241, 0.72);
+  backdrop-filter: blur(2px);
+  border-radius: var(--r);
+}
+
+.plate {
+  padding: 22px 18px 10px;
+}
+
+.wide {
+  width: 100%;
+  min-width: 520px;
+  height: auto;
+}
+
+.narrow {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+/* Below the two-column break the bus layout stops fitting, so the same
+   system is drawn as a stack instead of being scrolled sideways. */
+@media (max-width: 700px) {
+  .wide {
+    display: none;
+  }
+  .narrow {
+    display: block;
+  }
+}
+
+/* --- title block -------------------------------------------------- */
+
+.titleBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid var(--wire);
+  padding: 11px 18px;
+  color: var(--ink-3);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ref {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ochre);
+  flex: none;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ochre);
+  animation: breathe 2.6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(184, 102, 15, 0.5);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 5px rgba(184, 102, 15, 0);
+  }
+}
+
+/* --- svg pieces --------------------------------------------------- */
+
+.tick {
+  stroke: var(--wire);
+  stroke-width: 1;
+}
+
+.wire {
+  stroke: var(--ink-3);
+  stroke-width: 1.25;
+  fill: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.node {
+  opacity: 0;
+  animation: settle 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.box {
+  fill: var(--sheet-2);
+  stroke: var(--ink);
+  stroke-width: 1.25;
+}
+
+.boxIdea {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.25;
+  stroke-dasharray: 5 4;
+  /* Still just an idea — the outline never settles. */
+  animation: ants 20s linear infinite;
+}
+
+@keyframes ants {
+  to {
+    stroke-dashoffset: -180;
+  }
+}
+
+.boxProd {
+  fill: var(--blue-tint);
+  stroke: var(--blue);
+  stroke-width: 1.5;
+}
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.09em;
+  fill: var(--ink);
+  text-transform: uppercase;
+}
+
+.labelMuted {
+  fill: var(--ink-3);
+}
+
+.labelBlue {
+  fill: var(--blue);
+}
+
+.sub {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  fill: var(--ink-3);
+}
+
+.port {
+  fill: var(--sheet-2);
+  stroke: var(--ink-3);
+  stroke-width: 1.25;
+}
+
+.portProd {
+  fill: var(--blue);
+  stroke: var(--blue);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wire {
+    stroke-dashoffset: 0;
+  }
+  .node {
+    opacity: 1;
+  }
+}

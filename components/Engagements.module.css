@@ -1,0 +1,106 @@
+.head {
+  max-width: 900px;
+  margin-bottom: 46px;
+}
+
+.table {
+  border: 1px solid var(--wire);
+  border-radius: var(--r);
+  background: rgba(241, 243, 241, 0.72);
+  overflow: hidden;
+}
+
+.rowHead,
+.row {
+  display: grid;
+  grid-template-columns: 1.05fr 1.7fr 1fr 1.2fr;
+  gap: 24px;
+  padding: 22px clamp(20px, 2.4vw, 30px);
+  align-items: start;
+}
+
+.rowHead {
+  padding-block: 14px;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.row + .row {
+  border-top: 1px solid var(--wire);
+}
+
+.row {
+  transition: background 0.16s ease;
+}
+
+.row:hover {
+  background: var(--sheet-2);
+}
+
+.name {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.025em;
+}
+
+.what {
+  color: var(--ink-2);
+  font-size: 16px;
+}
+
+.fee {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.recurring {
+  color: var(--ochre);
+}
+
+.when {
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+.cellLabel {
+  display: none;
+}
+
+.note {
+  margin-top: 22px;
+  color: var(--ink-3);
+  font-size: 15px;
+  max-width: 70ch;
+}
+
+@media (max-width: 940px) {
+  .rowHead {
+    display: none;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-block: 26px;
+  }
+  .cellLabel {
+    display: block;
+    font-family: var(--font-mono), monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 5px;
+  }
+  /* Must follow .cellLabel — same specificity, later wins. */
+  .cellLabelQuiet {
+    display: none;
+  }
+}
