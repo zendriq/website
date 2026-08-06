@@ -135,7 +135,11 @@ To collect submissions server-side instead, add a route handler at
   reliably. Shared by `components/Logo.tsx` (inline, inherits `currentColor`),
   `app/icon.tsx` and `app/opengraph-image.tsx`. Re-bake from the SVG rather than
   hand-editing the path data, and note the art fills 90% of its viewBox horizontally but
-  only 65% vertically — size the mark accordingly.
+  only 65% vertically — size the mark accordingly, or use `LOGO_VIEWBOX_TIGHT`, which
+  crops to the art's own 450×324 bounds. The favicon uses the tight box, in brand orange
+  on transparent, so it is the logo as drawn rather than a knocked-out tile. There is no
+  `apple-icon`; add one if you want a proper iOS home-screen tile, and give it an opaque
+  background, since iOS composites transparency onto black.
 - **Type** — Archivo (display), IBM Plex Sans (body), IBM Plex Mono (labels and data),
   loaded through `next/font` so there are no external requests. Archivo is a grotesque out
   of the American gothic tradition — the same heavy, squarish territory the Z mark sits
