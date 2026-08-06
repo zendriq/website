@@ -150,7 +150,7 @@
 
 .choiceOn {
   border-color: var(--brand);
-  background: rgba(255, 101, 0, 0.14);
+  background: rgba(255, 80, 10, 0.14);
   color: var(--dark-ink);
 }
 

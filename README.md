@@ -46,7 +46,7 @@ npx vercel --prod # production deploy
 | Operating principles | `components/Principles.tsx` |
 | Contact copy and form | `components/Contact.tsx` |
 | Colors, type scale, spacing | `app/globals.css` (`:root`) |
-| The logo mark | `public/logo.png` → traced into `lib/logo.ts` |
+| The logo mark | `public/logo.svg` → baked into `lib/logo.ts` |
 | Favicon | `app/icon.tsx` |
 | Social preview card | `app/opengraph-image.tsx` |
 
@@ -61,10 +61,10 @@ narrower practice than Zendriq runs.
 The site follows the **two-track** position in `Zendriq Business Plan` — one practice,
 two front doors:
 
-- **Track A — Assess & Remediate** (ultramarine): established businesses. Entry offer is
-  the Baseline Assessment, which is the flagship and is flagged *Start here*.
-- **Track B — Plan & Build** (ochre): startups. Entry offer is the discovery and
-  architecture sprint.
+- **Track A — Assess & Remediate**: established businesses. Entry offer is the Baseline
+  Assessment, which is the flagship and is flagged *Start here*.
+- **Track B — Plan & Build**: startups. Entry offer is the discovery and architecture
+  sprint.
 
 Two rules the copy is built around, worth keeping:
 
@@ -103,17 +103,22 @@ To collect submissions server-side instead, add a route handler at
     At the 72% alpha they used to have, the grid still read through behind their text.
     `--sheet-hi` is the hover step above that.
 - **Palette** — one spot colour, used the way a highlighter is used on a real drawing.
-  **`--brand: #ff6500`** is the mark's orange, and there is a contrast rule you must keep:
+  **`--brand: #ff500a`**, straight from `logo.svg`.
 
   | Token | Use it for |
   | --- | --- |
-  | `--brand` `#ff6500` | fills, rules, marks, strokes, and text on a **dark** background |
-  | `--brand-ink` `#a83b00` | the only orange safe for **text on the light sheet** (5.3:1) |
+  | `--brand` `#ff500a` | fills, rules, marks, strokes, and all orange text |
+  | `--brand-ink` | orange text on the light sheet — currently the same as `--brand` |
   | `--brand-tint` `#ffe3d1` | pale fills — gantt bars, the diagram's outcome box |
 
-  `#ff6500` on the sheet is **2.3:1** — it fails at every size, and setting `--brand-ink`
-  to it once already made the eyebrow labels unreadable. All orange text on the sheet
-  takes `--brand-ink`. Anything sitting *on* orange takes `--ink`, never white.
+  Anything sitting *on* orange takes `--ink`, never white — the brand orange only clears
+  4.5:1 against ink, not against paper.
+
+  `--brand-ink` exists as a separate token so orange text can be darkened independently
+  of fills. It is deliberately set equal to `--brand` right now, which is ~2.7:1 on the
+  sheet and below AA; the small mono labels lean on weight and size to stay legible
+  instead. If that ever has to pass an audit, darken **this token alone** — `#a83b00` is
+  5.3:1 — rather than touching `--brand`.
 - **Small mono labels** — the eyebrows, chips, gantt spans and form labels are the
   hardest type on the page: small, uppercase, tracked out and often orange. They are all
   set at **500, never 400**, at **11.5px or larger**, with tracking **at or under
@@ -124,9 +129,17 @@ To collect submissions server-side instead, add a route handler at
 - **The two tracks differ in weight, not hue** — both are brand orange so neither reads as
   the junior one. Track A gets solid marks and a solid edge rule; Track B gets hollow
   marks and a hatched rule. Same pattern in `Tracks`, `Process` and `Services`.
-- **The mark** — `public/logo.png` is the original. `lib/logo.ts` holds it traced to a
-  single SVG path, shared by `components/Logo.tsx` (inline, inherits `currentColor`), the
-  favicon in `app/icon.tsx` and the social card. Re-trace rather than hand-edit the path.
+- **The mark** — `public/logo.svg` is the source. `lib/logo.ts` holds its two paths with
+  the source's `<g transform="matrix(...)">` baked into the coordinates, because next/og
+  (Satori) renders the favicon and social card and doesn't handle group transforms
+  reliably. Shared by `components/Logo.tsx` (inline, inherits `currentColor`),
+  `app/icon.tsx` and `app/opengraph-image.tsx`. Re-bake from the SVG rather than
+  hand-editing the path data, and note the art fills 90% of its viewBox horizontally but
+  only 65% vertically — size the mark accordingly, or use `LOGO_VIEWBOX_TIGHT`, which
+  crops to the art's own 450×324 bounds. The favicon uses the tight box, in brand orange
+  on transparent, so it is the logo as drawn rather than a knocked-out tile. There is no
+  `apple-icon`; add one if you want a proper iOS home-screen tile, and give it an opaque
+  background, since iOS composites transparency onto black.
 - **Type** — Archivo (display), IBM Plex Sans (body), IBM Plex Mono (labels and data),
   loaded through `next/font` so there are no external requests. Archivo is a grotesque out
   of the American gothic tradition — the same heavy, squarish territory the Z mark sits

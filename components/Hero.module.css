@@ -64,7 +64,7 @@
 }
 
 /* The one place the brand orange is allowed to be the whole surface. Dark
-   text on it, never light — #ff6500 only clears 4.5:1 against ink. */
+   text on it, never light — the brand orange only clears 4.5:1 against ink. */
 .primary {
   display: inline-flex;
   align-items: center;

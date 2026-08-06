@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
-import { LOGO_PATH } from "@/lib/logo";
+import { LOGO_PATHS, LOGO_VIEWBOX } from "@/lib/logo";
 
 export const alt = `${site.name} — ${site.tagline}`;
 export const size = { width: 1200, height: 630 };
@@ -25,14 +25,10 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <svg
-            width="46"
-            height="46"
-            viewBox="0 0 100 100"
-            fill="#ff6500"
-            fillRule="evenodd"
-          >
-            <path d={LOGO_PATH} />
+          <svg width="50" height="50" viewBox={LOGO_VIEWBOX} fill="#ff500a">
+            {LOGO_PATHS.map((d) => (
+              <path key={d} d={d} />
+            ))}
           </svg>
           <div
             style={{
@@ -75,7 +71,7 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "3px solid #ff6500",
+            borderTop: "3px solid #ff500a",
             paddingTop: 26,
             fontSize: 20,
             letterSpacing: "0.1em",

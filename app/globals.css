@@ -4,9 +4,8 @@
    the brand orange from the mark, used the way a highlighter is
    used on a real technical drawing.
 
-   Contrast rule, because #ff6500 is bright:
-     --brand      fills, rules, marks, strokes, and text on dark
-     --brand-ink  the only orange safe for text on the light sheet
+   --brand is the mark's orange, straight from logo.svg. Anything sitting
+   *on* it takes --ink, never white.
    --------------------------------------------------------------- */
 
 :root {
@@ -20,10 +19,14 @@
   --ink-2: #57544c;
   --ink-3: #6a665e;
 
-  --brand: #ff6500;
+  --brand: #ff500a;
   --brand-2: #ff8534;
-  /* NOT #ff6500 — that is 2.3:1 on the sheet and fails at any size. */
-  --brand-ink: #a83b00;
+  /* Deliberately the same as --brand: the pure mark colour is used for text
+     on the sheet too. That is ~2.7:1, so it is below AA — the small mono
+     labels lean on weight 500 and 13.5px to stay legible instead. If those
+     ever need to pass an audit, darken this alone (#a83b00 is 5.3:1) rather
+     than touching --brand. */
+  --brand-ink: #ff500a;
   --brand-tint: #ffe3d1;
 
   --dark: #17140f;
