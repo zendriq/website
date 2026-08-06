@@ -1,10 +1,9 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Gap from "@/components/Gap";
+import Tracks from "@/components/Tracks";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
-import Engagements from "@/components/Engagements";
-import Focus from "@/components/Focus";
+import Coverage from "@/components/Coverage";
 import Principles from "@/components/Principles";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -19,10 +18,12 @@ const jsonLd = {
   description: site.description,
   areaServed: "Worldwide",
   serviceType: [
+    "Technology consulting",
+    "Infrastructure assessment",
+    "Infrastructure remediation",
     "Technical discovery and architecture",
-    "MVP development",
     "Fractional CTO",
-    "Managed cloud platform",
+    "Software development",
   ],
 };
 
@@ -36,11 +37,10 @@ export default function Page() {
       <Nav />
       <main>
         <Hero />
-        <Gap />
+        <Tracks />
         <Services />
         <Process />
-        <Engagements />
-        <Focus />
+        <Coverage />
         <Principles />
         <Contact />
       </main>

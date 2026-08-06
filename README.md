@@ -38,24 +38,43 @@ npx vercel --prod # production deploy
 | --- | --- |
 | Business name, email, tagline, domain | `lib/site.ts` |
 | Nav links | `lib/site.ts` |
-| Hero headline and the architecture diagram | `components/Hero.tsx`, `components/BuildGraph.tsx` |
-| Problem framing | `components/Gap.tsx` |
-| Service cards | `components/Services.tsx` |
-| Engagement timeline (the gantt) | `components/Process.tsx` |
-| Offers and fee structures | `components/Engagements.tsx` |
-| Industries and tech list | `components/Focus.tsx` |
+| Hero headline and the technical-surface diagram | `components/Hero.tsx`, `components/BuildGraph.tsx` |
+| The two tracks (who each is for, what it starts with) | `components/Tracks.tsx` |
+| Service cards, and the fee shape on each | `components/Services.tsx` |
+| Both engagement timelines (the gantts) | `components/Process.tsx` |
+| Capability areas | `components/Coverage.tsx` |
 | Operating principles | `components/Principles.tsx` |
 | Contact copy and form | `components/Contact.tsx` |
 | Colors, type scale, spacing | `app/globals.css` (`:root`) |
+| The logo mark | `public/logo.png` → traced into `lib/logo.ts` |
+| Favicon | `app/icon.tsx` |
 | Social preview card | `app/opengraph-image.tsx` |
 
 **`hello@zendriq.com` is a placeholder.** Change it in `lib/site.ts` before you launch —
 it appears in the nav CTA, the contact form, the footer, the OG image and the
 structured data.
 
-The three focus industries in `components/Focus.tsx` (AI-native SaaS, healthcare,
-industrial technology) are a starting point drawn from the business outline. Pick the
-ones you actually want to be known for.
+The copy deliberately names no vendors, frameworks or industries — `Coverage.tsx`
+describes capability areas instead, so the site doesn't filter out work by implying a
+narrower practice than Zendriq runs.
+
+The site follows the **two-track** position in `Zendriq Business Plan` — one practice,
+two front doors:
+
+- **Track A — Assess & Remediate** (ultramarine): established businesses. Entry offer is
+  the Baseline Assessment, which is the flagship and is flagged *Start here*.
+- **Track B — Plan & Build** (ochre): startups. Entry offer is the discovery and
+  architecture sprint.
+
+Two rules the copy is built around, worth keeping:
+
+- **Managed support is not on the site.** It stays off until it can actually be staffed.
+- **Build is present but honest about capacity.** The note on the Build card and the
+  dashed bar in `Process.tsx` say one build at a time, never quoted against people we
+  haven't confirmed. Don't quietly upgrade that into a standing-team promise.
+
+No prices are published. Every offering shows a fee *shape* and a duration instead,
+because the plan says to quote only after a scoping call.
 
 ## The contact form
 
@@ -71,14 +90,50 @@ To collect submissions server-side instead, add a route handler at
 ## Design notes
 
 - **Substrate** — the page sits on a graph-paper grid (24px minor, 120px major),
-  drawn in `body` in `app/globals.css`.
-- **Palette** — cool gray sheet, graphite ink, ultramarine `#2a34c8` for structure, and
-  ochre `#b8660f` reserved for anything that is *live* or *recurring*. Keep that
-  distinction if you add sections.
-- **Type** — Bricolage Grotesque (display), Instrument Sans (body), JetBrains Mono
-  (labels and data), loaded through `next/font` so there are no external requests.
-- **The hero diagram** draws itself on load. It has two layouts: a five-branch bus
-  above 700px and a vertical stack below, both in `components/BuildGraph.tsx`. The
-  "Your idea" box has marching-ant dashes on purpose — it's the only thing on the page
-  that never settles.
+  drawn in `body` in `app/globals.css`. Warm paper, graphite linework.
+- **Keep the grid faint rather than plating the type.** The minor 24px rule is the one
+  that lands mid-line, so it sits at `0.07` alpha — texture, not furniture. Backing every
+  text block with an opaque panel was tried and looks bad: big blank slabs floating on
+  graph paper, and the page stops reading as a drawing. Large display type is fine over a
+  soft grid. If you ever strengthen the grid, you inherit that problem.
+  - The **eyebrow labels** are the one exception, and carry their own paper via
+    `.eyebrow::after` — they're the smallest, thinnest, orange-est text on the page.
+    `width: fit-content` keeps the paper hugging the label instead of running the column.
+  - **Panels** (cards, charts, the diagram frame) carry `--sheet-2` and are **opaque**.
+    At the 72% alpha they used to have, the grid still read through behind their text.
+    `--sheet-hi` is the hover step above that.
+- **Palette** — one spot colour, used the way a highlighter is used on a real drawing.
+  **`--brand: #ff6500`** is the mark's orange, and there is a contrast rule you must keep:
+
+  | Token | Use it for |
+  | --- | --- |
+  | `--brand` `#ff6500` | fills, rules, marks, strokes, and text on a **dark** background |
+  | `--brand-ink` `#a83b00` | the only orange safe for **text on the light sheet** (5.3:1) |
+  | `--brand-tint` `#ffe3d1` | pale fills — gantt bars, the diagram's outcome box |
+
+  `#ff6500` on the sheet is **2.3:1** — it fails at every size, and setting `--brand-ink`
+  to it once already made the eyebrow labels unreadable. All orange text on the sheet
+  takes `--brand-ink`. Anything sitting *on* orange takes `--ink`, never white.
+- **Small mono labels** — the eyebrows, chips, gantt spans and form labels are the
+  hardest type on the page: small, uppercase, tracked out and often orange. They are all
+  set at **500, never 400**, at **11.5px or larger**, with tracking **at or under
+  0.12em**. Plex Mono 400 is thin enough that these turn to mush below that; and because
+  monospace advance widths don't change with weight, going to 500 costs no extra space.
+  The only exceptions are the two SVG `<text>` rules in `BuildGraph.module.css`, whose
+  sizes are viewBox units measured against hand-set boxes — thicken those, never enlarge.
+- **The two tracks differ in weight, not hue** — both are brand orange so neither reads as
+  the junior one. Track A gets solid marks and a solid edge rule; Track B gets hollow
+  marks and a hatched rule. Same pattern in `Tracks`, `Process` and `Services`.
+- **The mark** — `public/logo.png` is the original. `lib/logo.ts` holds it traced to a
+  single SVG path, shared by `components/Logo.tsx` (inline, inherits `currentColor`), the
+  favicon in `app/icon.tsx` and the social card. Re-trace rather than hand-edit the path.
+- **Type** — Archivo (display), IBM Plex Sans (body), IBM Plex Mono (labels and data),
+  loaded through `next/font` so there are no external requests. Archivo is a grotesque out
+  of the American gothic tradition — the same heavy, squarish territory the Z mark sits
+  in — and Plex keeps the register technical rather than trend-led.
+- **The hero diagram** draws itself on load. Two inputs — a running system of unknown
+  health and a product that doesn't exist yet — feed the same five layers and come out
+  under control. It has two layouts: a five-branch bus above 700px and a vertical stack
+  below, both in `components/BuildGraph.tsx`. The "New product" box has marching-ant
+  dashes on purpose — it's the only thing on the page that never settles.
 - Motion respects `prefers-reduced-motion`; the diagram renders in its final state.

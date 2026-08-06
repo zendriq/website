@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
+import { LOGO_PATH } from "@/lib/logo";
 
 export const alt = `${site.name} — ${site.tagline}`;
 export const size = { width: 1200, height: 630 };
@@ -15,21 +16,30 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#e7eae8",
+          background: "#eae9e6",
           backgroundImage:
-            "linear-gradient(#d3d9d5 1px, transparent 1px), linear-gradient(90deg, #d3d9d5 1px, transparent 1px)",
+            "linear-gradient(#d7d6d1 1px, transparent 1px), linear-gradient(90deg, #d7d6d1 1px, transparent 1px)",
           backgroundSize: "60px 60px",
           padding: 72,
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <svg
+            width="46"
+            height="46"
+            viewBox="0 0 100 100"
+            fill="#ff6500"
+            fillRule="evenodd"
+          >
+            <path d={LOGO_PATH} />
+          </svg>
           <div
             style={{
               fontSize: 34,
               fontWeight: 800,
-              letterSpacing: "-0.05em",
-              color: "#121715",
+              letterSpacing: "-0.035em",
+              color: "#171614",
             }}
           >
             Zendriq
@@ -39,25 +49,25 @@ export default function OpengraphImage() {
               fontSize: 17,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "#78837d",
+              color: "#6a665e",
             }}
           >
-            Concept → Production
+            Consulting &amp; engineering
           </div>
         </div>
 
         <div
           style={{
             display: "flex",
-            fontSize: 76,
+            fontSize: 74,
             fontWeight: 700,
-            letterSpacing: "-0.045em",
-            lineHeight: 1.05,
-            color: "#121715",
-            maxWidth: 940,
+            letterSpacing: "-0.025em",
+            lineHeight: 1.07,
+            color: "#171614",
+            maxWidth: 960,
           }}
         >
-          The technical half of your startup.
+          The technical decisions you can&rsquo;t afford to get wrong.
         </div>
 
         <div
@@ -65,18 +75,18 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "2px solid #121715",
+            borderTop: "3px solid #ff6500",
             paddingTop: 26,
             fontSize: 20,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
-            color: "#4e5a55",
+            color: "#57544c",
           }}
         >
           <div style={{ display: "flex" }}>
-            Discovery · Architecture · Build · Run
+            Assess · Architect · Build · Oversee
           </div>
-          <div style={{ display: "flex", color: "#2a34c8" }}>{site.email}</div>
+          <div style={{ display: "flex", color: "#b33f00" }}>{site.email}</div>
         </div>
       </div>
     ),
