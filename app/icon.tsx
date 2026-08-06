@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { LOGO_PATH } from "@/lib/logo";
+import { LOGO_PATHS, LOGO_VIEWBOX } from "@/lib/logo";
 
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
@@ -15,11 +15,13 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#ff6500",
+          background: "#ff500a",
         }}
       >
-        <svg width="52" height="52" viewBox="0 0 100 100" fill="#171614" fillRule="evenodd">
-          <path d={LOGO_PATH} />
+        <svg width="54" height="54" viewBox={LOGO_VIEWBOX} fill="#171614">
+          {LOGO_PATHS.map((d) => (
+            <path key={d} d={d} />
+          ))}
         </svg>
       </div>
     ),

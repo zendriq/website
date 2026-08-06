@@ -1,4 +1,4 @@
-import { LOGO_PATH } from "@/lib/logo";
+import { LOGO_PATHS, LOGO_VIEWBOX } from "@/lib/logo";
 
 /**
  * The Zendriq mark. Inherits currentColor, stays crisp at any size, and
@@ -8,13 +8,14 @@ export default function Logo({ className }: { className?: string }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 100 100"
+      viewBox={LOGO_VIEWBOX}
       fill="currentColor"
-      fillRule="evenodd"
       aria-hidden="true"
       focusable="false"
     >
-      <path d={LOGO_PATH} />
+      {LOGO_PATHS.map((d) => (
+        <path key={d} d={d} />
+      ))}
     </svg>
   );
 }
