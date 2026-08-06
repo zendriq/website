@@ -1,27 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Bricolage_Grotesque,
-  Instrument_Sans,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Archivo, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+/* Archivo is a grotesque out of the American gothic tradition — heavy,
+   squarish and slightly wide, which is the same territory the Z mark sits
+   in. Plex Sans and Plex Mono keep the technical-document register without
+   tipping into anything trend-led. */
+const display = Archivo({
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });
 
-const body = Instrument_Sans({
+const body = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-body",
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
@@ -36,14 +36,17 @@ export const metadata: Metadata = {
   },
   description: site.description,
   keywords: [
+    "technology consulting",
+    "infrastructure assessment",
+    "IT risk review",
     "fractional CTO",
-    "technical co-founder",
-    "MVP development",
+    "startup technical advisor",
     "software architecture",
     "cloud architecture",
-    "Kubernetes consulting",
+    "MVP development",
+    "DevOps",
+    "cybersecurity",
     "AI integration",
-    "startup engineering partner",
   ],
   openGraph: {
     type: "website",
@@ -61,7 +64,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#e7eae8",
+  themeColor: "#eae9e6",
 };
 
 export default function RootLayout({

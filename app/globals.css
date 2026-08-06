@@ -1,27 +1,36 @@
 /* ---------------------------------------------------------------
    Zendriq — drafting sheet
-   Cool paper substrate, graphite linework, ultramarine as the
-   structural accent, ochre reserved for anything that is "live".
+   Warm paper substrate, graphite linework, and one spot colour:
+   the brand orange from the mark, used the way a highlighter is
+   used on a real technical drawing.
+
+   Contrast rule, because #ff6500 is bright:
+     --brand      fills, rules, marks, strokes, and text on dark
+     --brand-ink  the only orange safe for text on the light sheet
    --------------------------------------------------------------- */
 
 :root {
-  --sheet: #e7eae8;
-  --sheet-2: #f1f3f1;
-  --sheet-3: #dce0dd;
-  --grid: #d3d9d5;
-  --wire: #b6bfba;
-  --ink: #121715;
-  --ink-2: #4e5a55;
-  --ink-3: #78837d;
-  --blue: #2a34c8;
-  --blue-2: #4c55e0;
-  --blue-tint: #e0e2f9;
-  --ochre: #b8660f;
-  --dark: #10161a;
-  --dark-2: #1a2328;
-  --dark-wire: #2c383e;
-  --dark-ink: #e8ecea;
-  --dark-ink-2: #9aa8a4;
+  --sheet: #eae9e6;
+  --sheet-2: #f4f3f0;
+  --sheet-hi: #fbfaf8;
+  --sheet-3: #dfdedb;
+  --grid: #dedcd7;
+  --wire: #bcbab4;
+  --ink: #171614;
+  --ink-2: #57544c;
+  --ink-3: #6a665e;
+
+  --brand: #ff6500;
+  --brand-2: #ff8534;
+  /* NOT #ff6500 — that is 2.3:1 on the sheet and fails at any size. */
+  --brand-ink: #a83b00;
+  --brand-tint: #ffe3d1;
+
+  --dark: #17140f;
+  --dark-2: #221e18;
+  --dark-wire: #3a352c;
+  --dark-ink: #ecebe7;
+  --dark-ink-2: #a8a49a;
 
   --shell: 1300px;
   --gut: 28px;
@@ -45,12 +54,18 @@ html {
 body {
   margin: 0;
   background-color: var(--sheet);
-  /* Graph-paper substrate: 24px minor rule, 120px major. */
+  /* Graph-paper substrate: 24px minor rule, 120px major.
+
+     The minor rule is the one that lands in the middle of a line of text, so
+     it is kept faint on purpose — at 0.16 it read through body copy and made
+     the page look dirty. Texture, not furniture. If you strengthen it, the
+     type has to be plated, and plating whole blocks looks far worse than a
+     soft grid does. */
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-    linear-gradient(rgba(120, 131, 125, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(120, 131, 125, 0.16) 1px, transparent 1px);
+    linear-gradient(rgba(106, 102, 94, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(106, 102, 94, 0.07) 1px, transparent 1px);
   background-size:
     120px 120px,
     120px 120px,
@@ -59,8 +74,8 @@ body {
   background-position: -1px -1px;
   color: var(--ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: 16.5px;
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -71,8 +86,9 @@ h3,
 h4 {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.03;
+  /* Archivo sets tighter than Bricolage did — it needs less negative tracking. */
+  letter-spacing: -0.022em;
+  line-height: 1.06;
   margin: 0;
   text-wrap: balance;
 }
@@ -107,12 +123,12 @@ textarea {
 }
 
 ::selection {
-  background: var(--blue);
-  color: #fff;
+  background: var(--brand);
+  color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--brand);
   outline-offset: 3px;
   border-radius: 1px;
 }
@@ -137,30 +153,55 @@ section[id] {
 
 /* --- shared type -------------------------------------------------- */
 
+/* Small uppercase mono is the hardest thing on this page to read: it is
+   already small, tracked out and often orange. So every one of these labels
+   is set at 500, not 400, and tracking stays under 0.13em — past that the
+   letters stop reading as words. Don't set a mono label below 11.5px. */
+
 .mono {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
+/* The one place a plate earns itself: the smallest, thinnest, orange-est text
+   on the page. `width: fit-content` keeps it block-level — so the margin below
+   still behaves — while letting the paper hug the label rather than running
+   the width of the column, which is what made the earlier version look like a
+   slab. */
 .eyebrow {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 12px;
-  letter-spacing: 0.16em;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--brand-ink);
   display: flex;
+  width: fit-content;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   margin-bottom: 26px;
+  position: relative;
+  isolation: isolate;
+}
+
+.eyebrow::after {
+  content: "";
+  position: absolute;
+  inset: -5px -9px;
+  background: var(--sheet);
+  border-radius: 2px;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .eyebrow::before {
   content: "";
   width: 26px;
-  height: 1px;
-  background: var(--blue);
+  height: 2px;
+  background: var(--brand);
   flex: none;
 }
 

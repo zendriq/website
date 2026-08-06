@@ -1,9 +1,10 @@
 import { ImageResponse } from "next/og";
+import { LOGO_PATH } from "@/lib/logo";
 
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-// A node with a wire leaving it — the diagram, reduced to a favicon.
+// The mark, knocked out of a solid brand tile.
 export default function Icon() {
   return new ImageResponse(
     (
@@ -14,15 +15,12 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#121715",
-          color: "#e7eae8",
-          fontSize: 42,
-          fontWeight: 700,
-          letterSpacing: "-0.06em",
-          fontFamily: "sans-serif",
+          background: "#ff6500",
         }}
       >
-        Z
+        <svg width="52" height="52" viewBox="0 0 100 100" fill="#171614" fillRule="evenodd">
+          <path d={LOGO_PATH} />
+        </svg>
       </div>
     ),
     size,

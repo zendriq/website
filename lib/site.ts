@@ -2,18 +2,18 @@
 
 export const site = {
   name: "Zendriq",
-  tagline: "We take your idea from concept to production.",
+  tagline: "Technical consulting and infrastructure engineering.",
   description:
-    "Zendriq is the technical half of your startup: discovery, architecture, an engineering team assembled for your build, and a CTO who stays on after launch.",
+    "Zendriq is the senior technical partner for businesses whose systems matter. We find out what's actually true about the technology you depend on — or design what you should build — and stay accountable for fixing it.",
   email: "hello@zendriq.com",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://zendriq.com",
   // The drafting-sheet reference printed under the hero diagram.
-  sheetRef: "ZQ-001 · REFERENCE ARCHITECTURE · REV A",
+  sheetRef: "ZQ-001 · TECHNICAL SURFACE · REV B",
 };
 
 export const nav = [
+  { label: "Two ways in", href: "#tracks" },
   { label: "What we do", href: "#services" },
   { label: "How it runs", href: "#process" },
-  { label: "Working together", href: "#engagements" },
-  { label: "Focus", href: "#focus" },
+  { label: "Coverage", href: "#coverage" },
 ];

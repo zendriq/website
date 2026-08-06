@@ -2,7 +2,7 @@
   position: relative;
   margin: 0;
   border: 1px solid var(--wire);
-  background: rgba(241, 243, 241, 0.72);
+  background: var(--sheet-2);
   backdrop-filter: blur(2px);
   border-radius: var(--r);
 }
@@ -45,8 +45,9 @@
   padding: 11px 18px;
   color: var(--ink-3);
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.13em;
+  font-weight: 500;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -60,7 +61,7 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--ochre);
+  color: var(--brand-ink);
   flex: none;
 }
 
@@ -68,7 +69,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--ochre);
+  background: var(--brand);
   animation: breathe 2.6s ease-in-out infinite;
 }
 
@@ -76,11 +77,11 @@
   0%,
   100% {
     opacity: 1;
-    box-shadow: 0 0 0 0 rgba(184, 102, 15, 0.5);
+    box-shadow: 0 0 0 0 rgba(255, 101, 0, 0.5);
   }
   50% {
     opacity: 0.55;
-    box-shadow: 0 0 0 5px rgba(184, 102, 15, 0);
+    box-shadow: 0 0 0 5px rgba(255, 101, 0, 0);
   }
 }
 
@@ -139,6 +140,13 @@
   animation: ants 20s linear infinite;
 }
 
+/* Real, but nobody has measured it. Solid outline, no fill. */
+.boxUnknown {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.25;
+}
+
 @keyframes ants {
   to {
     stroke-dashoffset: -180;
@@ -146,13 +154,14 @@
 }
 
 .boxProd {
-  fill: var(--blue-tint);
-  stroke: var(--blue);
+  fill: var(--brand-tint);
+  stroke: var(--brand);
   stroke-width: 1.5;
 }
 
 .label {
   font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
   font-size: 12.5px;
   letter-spacing: 0.09em;
   fill: var(--ink);
@@ -163,12 +172,13 @@
   fill: var(--ink-3);
 }
 
-.labelBlue {
-  fill: var(--blue);
+.labelBrand {
+  fill: var(--brand-ink);
 }
 
 .sub {
   font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
   font-size: 10.5px;
   letter-spacing: 0.04em;
   fill: var(--ink-3);
@@ -181,8 +191,8 @@
 }
 
 .portProd {
-  fill: var(--blue);
-  stroke: var(--blue);
+  fill: var(--brand);
+  stroke: var(--brand);
 }
 
 @media (prefers-reduced-motion: reduce) {

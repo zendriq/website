@@ -1,13 +1,15 @@
 import { nav, site } from "@/lib/site";
+import Logo from "./Logo";
 import s from "./Nav.module.css";
 
 export default function Nav() {
   return (
     <header className={s.nav}>
       <div className={`shell ${s.inner}`}>
-        <a className={s.brand} href="#top">
+        <a className={s.brand} href="#top" aria-label={`${site.name} — home`}>
+          <Logo className={s.mark} />
           <span className={s.wordmark}>{site.name}</span>
-          <span className={s.brandNote}>Concept → Production</span>
+          <span className={s.brandNote}>Consulting &amp; engineering</span>
         </a>
 
         <nav className={s.links} aria-label="Sections">
@@ -19,7 +21,7 @@ export default function Nav() {
         </nav>
 
         <a className={s.cta} href="#contact">
-          Start a project
+          Book a call
         </a>
       </div>
     </header>

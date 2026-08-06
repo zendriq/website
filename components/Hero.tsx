@@ -2,11 +2,11 @@ import BuildGraph from "./BuildGraph";
 import s from "./Hero.module.css";
 
 const PROOF = [
-  "Cloud architecture",
-  "Kubernetes",
+  "Cloud infrastructure",
   "Networking",
+  "DevOps",
   "AI integration",
-  "Automation",
+  "Cybersecurity",
 ];
 
 function Arrow() {
@@ -24,25 +24,26 @@ export default function Hero() {
         <div className={s.copy}>
           <p className={s.stamp}>
             <span className={s.stampDot} aria-hidden="true" />
-            Engineering partner for founders
+            Technical consulting &amp; infrastructure engineering
           </p>
 
           <h1 className={s.h1}>
-            We take your idea from concept to <em>production</em>.
+            The technical decisions you can&rsquo;t afford to get{" "}
+            <em>wrong</em>.
           </h1>
 
           <p className={s.sub}>
-            You know the business. We own the technology: what to build, how to
-            architect it, who writes the code, and how it runs once real
-            customers depend on it.
+            We find out what&rsquo;s actually true about the systems you depend
+            on — or design what you should build — and stay accountable for
+            fixing it.
           </p>
 
           <div className={s.actions}>
             <a className={s.primary} href="#contact">
-              Tell us what you&rsquo;re building <Arrow />
+              Book a scoping call <Arrow />
             </a>
-            <a className={s.secondary} href="#process">
-              See how an engagement runs
+            <a className={s.secondary} href="#tracks">
+              See the two ways in
             </a>
           </div>
 

@@ -6,24 +6,46 @@ import s from "./Contact.module.css";
 
 const EXPECT = [
   { when: "Day 1", what: "A reply from an engineer, not a sales inbox." },
-  { when: "Day 2–3", what: "A 45-minute call about the business, not the tech." },
-  { when: "Week 1", what: "A written view of what we'd build first, and what it costs." },
+  { when: "Day 2–3", what: "A free 20–30 minute scoping call." },
+  { when: "Week 1", what: "A one-page scope with a fixed fee on it." },
 ];
 
+const SITUATIONS = {
+  assess: {
+    option: "Something already runs",
+    subject: "Assessment enquiry",
+    label: "What are you running?",
+    placeholder:
+      "What the business depends on, roughly how big it is, and what made you look.",
+  },
+  build: {
+    option: "Something’s about to be built",
+    subject: "New build enquiry",
+    label: "What are you building?",
+    placeholder: "The idea, who it’s for, and where you are today.",
+  },
+} as const;
+
+type Situation = keyof typeof SITUATIONS;
+
 export default function Contact() {
+  const [situation, setSituation] = useState<Situation>("assess");
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
-  const [project, setProject] = useState("");
+  const [detail, setDetail] = useState("");
+
+  const active = SITUATIONS[situation];
 
   function compose(event: React.FormEvent) {
     event.preventDefault();
-    const subject = `New project — ${company.trim() || name.trim() || "enquiry"}`;
+    const subject = `${active.subject} — ${company.trim() || name.trim() || "enquiry"}`;
     const body = [
       `Name: ${name.trim()}`,
       `Company: ${company.trim()}`,
+      `Situation: ${active.option}`,
       "",
-      "What we're building:",
-      project.trim(),
+      `${active.label}`,
+      detail.trim(),
     ].join("\n");
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
       subject,
@@ -35,10 +57,11 @@ export default function Contact() {
       <div className={`shell ${s.grid}`}>
         <div>
           <p className={s.eyebrow}>Start here</p>
-          <h2 className={s.title}>Tell us what you&rsquo;re building.</h2>
+          <h2 className={s.title}>Book a scoping call.</h2>
           <p className={s.blurb}>
-            A paragraph is enough. If we&rsquo;re not the right fit we&rsquo;ll
-            tell you on the first call and point you at someone who is.
+            Twenty minutes, no charge, and no number quoted until we&rsquo;ve
+            seen enough to stand behind it. If we&rsquo;re not the right fit,
+            you&rsquo;ll hear that on the call.
           </p>
 
           <ul className={s.expect}>
@@ -59,6 +82,30 @@ export default function Contact() {
         </div>
 
         <form className={s.form} onSubmit={compose}>
+          <fieldset className={s.choice}>
+            <legend className={s.label}>Which sounds like you?</legend>
+            <div className={s.choiceRow}>
+              {(Object.keys(SITUATIONS) as Situation[]).map((key) => (
+                <label
+                  key={key}
+                  className={`${s.choiceOption} ${
+                    situation === key ? s.choiceOn : ""
+                  }`}
+                >
+                  <input
+                    className={s.choiceInput}
+                    type="radio"
+                    name="situation"
+                    value={key}
+                    checked={situation === key}
+                    onChange={() => setSituation(key)}
+                  />
+                  {SITUATIONS[key].option}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
           <div className={s.field}>
             <label className={s.label} htmlFor="name">
               Your name
@@ -83,20 +130,19 @@ export default function Contact() {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               autoComplete="organization"
-              placeholder="Or “still deciding on the name”"
             />
           </div>
 
           <div className={s.field}>
-            <label className={s.label} htmlFor="project">
-              What are you building?
+            <label className={s.label} htmlFor="detail">
+              {active.label}
             </label>
             <textarea
-              id="project"
+              id="detail"
               className={s.textarea}
-              value={project}
-              onChange={(e) => setProject(e.target.value)}
-              placeholder="The idea, who it's for, and where you are today."
+              value={detail}
+              onChange={(e) => setDetail(e.target.value)}
+              placeholder={active.placeholder}
               required
             />
           </div>
@@ -105,8 +151,8 @@ export default function Contact() {
             Compose the email
           </button>
           <p className={s.fine}>
-            This opens your email app with the details filled in. Nothing is
-            sent from this page.
+            Opens your email app with the details filled in. Nothing is sent
+            from this page.
           </p>
         </form>
       </div>
