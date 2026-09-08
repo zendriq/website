@@ -6,10 +6,21 @@
   margin-bottom: 54px;
 }
 
+/* Six columns so the rows follow the tracks: the two Track A cards span
+   three each on the first row, the three Track B cards span two each on
+   the second. */
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 20px;
+}
+
+.a {
+  grid-column: span 3;
+}
+
+.b {
+  grid-column: span 2;
 }
 
 .card {
@@ -69,7 +80,7 @@
   gap: 8px;
 }
 
-/* Solid square = Track A, hollow = Track B, grey = sold into both. */
+/* Solid square = Track A, hollow = Track B. */
 .track::before {
   content: "";
   width: 8px;
@@ -86,14 +97,6 @@
 .b .track::before {
   background: transparent;
   box-shadow: inset 0 0 0 1.5px var(--brand);
-}
-
-.both .track {
-  color: var(--ink-3);
-}
-
-.both .track::before {
-  background: var(--ink-3);
 }
 
 .flag {
@@ -170,6 +173,11 @@
 @media (max-width: 1080px) {
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .a,
+  .b {
+    grid-column: span 1;
   }
 }
 

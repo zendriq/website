@@ -22,7 +22,6 @@ const jsonLd = {
     "Infrastructure assessment",
     "Infrastructure remediation",
     "Technical discovery and architecture",
-    "Fractional CTO",
     "Software development",
   ],
 };

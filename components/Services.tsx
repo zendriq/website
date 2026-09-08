@@ -44,14 +44,6 @@ const CARDS = [
     shape: "Milestone · 8–16 weeks",
     note: "One build at a time. We never quote delivery against people we haven’t already confirmed.",
   },
-  {
-    track: "Both tracks",
-    tone: "both",
-    title: "Fractional CTO",
-    body: "The senior technical seat, one or two days a week — architecture, review, hiring, vendors, and the answer when the board asks.",
-    chips: ["Architecture", "Code review", "Hiring", "Vendors"],
-    shape: "Monthly retainer · ongoing",
-  },
 ];
 
 export default function Services() {

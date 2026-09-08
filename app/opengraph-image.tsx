@@ -63,7 +63,8 @@ export default function OpengraphImage() {
             maxWidth: 960,
           }}
         >
-          The technical decisions you can&rsquo;t afford to get wrong.
+          The person who built it has moved on. The software your business
+          runs on hasn&rsquo;t.
         </div>
 
         <div
@@ -80,7 +81,7 @@ export default function OpengraphImage() {
           }}
         >
           <div style={{ display: "flex" }}>
-            Assess · Architect · Build · Oversee
+            Assess · Remediate · Architect · Build
           </div>
           <div style={{ display: "flex", color: "#b33f00" }}>{site.email}</div>
         </div>

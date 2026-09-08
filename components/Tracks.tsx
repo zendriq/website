@@ -6,7 +6,7 @@ const TRACKS = [
     tone: "a",
     name: "Assess & Remediate",
     fear: "“Something already runs the business, and I don’t know how fragile it is.”",
-    who: "Established businesses, 10–200 staff, depending on infrastructure nobody has looked at in years.",
+    who: "Established businesses, 10–200 staff, running on a custom application whose developer or agency has moved on — or on infrastructure nobody has looked at in years.",
     meta: [
       ["Starts with", "Baseline Assessment"],
       ["Shape", "Fixed fee · about 12 days"],
@@ -63,10 +63,12 @@ export default function Tracks() {
           ))}
         </div>
 
-        <p className={s.verdict}>
-          Same engineers, same standards, same one number to call. Only the
-          front door changes.
-        </p>
+        <div className={s.verdict}>
+          <p className={s.verdictText}>
+            Same engineers, same standards, same one number to call. Only the
+            front door changes.
+          </p>
+        </div>
       </div>
     </section>
   );

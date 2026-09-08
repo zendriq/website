@@ -4,7 +4,7 @@ export const site = {
   name: "Zendriq",
   tagline: "Technical consulting and infrastructure engineering.",
   description:
-    "Zendriq is the senior technical partner for businesses whose systems matter. We find out what's actually true about the technology you depend on — or design what you should build — and stay accountable for fixing it.",
+    "Zendriq reviews the software a business runs on — what could break, what it would cost, and what to fix first — then fixes it. Fixed-fee Baseline Assessment, about twelve days. For teams about to build something new, a discovery and architecture sprint before anyone writes code.",
   email: "hello@zendriq.com",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://zendriq.com",
   // The drafting-sheet reference printed under the hero diagram.
