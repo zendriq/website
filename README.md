@@ -38,7 +38,7 @@ npx vercel --prod # production deploy
 | --- | --- |
 | Business name, email, tagline, domain | `lib/site.ts` |
 | Nav links | `lib/site.ts` |
-| Hero headline and the technical-surface diagram | `components/Hero.tsx`, `components/BuildGraph.tsx` |
+| Hero headline (speaks to the developer-left situation) and the technical-surface diagram | `components/Hero.tsx`, `components/BuildGraph.tsx` |
 | The two tracks (who each is for, what it starts with) | `components/Tracks.tsx` |
 | Service cards, and the fee shape on each | `components/Services.tsx` |
 | Both engagement timelines (the gantts) | `components/Process.tsx` |
@@ -66,12 +66,15 @@ two front doors:
 - **Track B — Plan & Build**: startups. Entry offer is the discovery and architecture
   sprint.
 
-Two rules the copy is built around, worth keeping:
+Three rules the copy is built around, worth keeping:
 
 - **Managed support is not on the site.** It stays off until it can actually be staffed.
 - **Build is present but honest about capacity.** The note on the Build card and the
   dashed bar in `Process.tsx` say one build at a time, never quoted against people we
   haven't confirmed. Don't quietly upgrade that into a standing-team promise.
+- **Fractional CTO is not on the site.** It's in the offerings catalogue, but the
+  first-client push (`Zendriq Cold Outreach`) is the assessment. Add it back when there's
+  a retainer client to point at, not before.
 
 No prices are published. Every offering shows a fee *shape* and a duration instead,
 because the plan says to quote only after a scoping call.

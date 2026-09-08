@@ -28,14 +28,14 @@ export default function Hero() {
           </p>
 
           <h1 className={s.h1}>
-            The technical decisions you can&rsquo;t afford to get{" "}
-            <em>wrong</em>.
+            The person who built it has moved on. The software your business
+            runs on <em>hasn&rsquo;t</em>.
           </h1>
 
           <p className={s.sub}>
-            We find out what&rsquo;s actually true about the systems you depend
-            on — or design what you should build — and stay accountable for
-            fixing it.
+            We do fixed-fee reviews of the software a business depends on —
+            what could break, what it would cost you, and what to fix first.
+            Twelve days, one report, plain English. Then we fix it.
           </p>
 
           <div className={s.actions}>
